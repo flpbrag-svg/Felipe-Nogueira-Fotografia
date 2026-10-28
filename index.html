@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Felipe Nogueira | Portfólio de Fotografia</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0b0b0b;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        header {
+            text-align: center;
+            padding: 4rem 2rem 2rem;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            color: #f1f1f1;
+        }
+
+        header p {
+            color: #888;
+            font-size: 1rem;
+            letter-spacing: 1px;
+        }
+
+        /* Categorias/Filtros */
+        .filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+            padding: 0 1rem;
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: 1px solid #333;
+            color: #aaa;
+            padding: 0.5rem 1.5rem;
+            cursor: pointer;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background-color: #ffffff;
+            color: #0b0b0b;
+            border-color: #ffffff;
+        }
+
+        /* Galeria */
+        .gallery-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            background-color: #1a1a1a;
+            aspect-ratio: 3 / 2;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-item .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            padding: 1.5rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover .overlay {
+            opacity: 1;
+        }
+
+        .gallery-item .overlay h3 {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        /* Rodapé / Contato */
+        footer {
+            text-align: center;
+            padding: 5rem 2rem 3rem;
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #aaa;
+            text-decoration: none;
+            margin: 0 0.5rem;
+            transition: color 0.3s;
+        }
+
+        footer a:hover {
+            color: #fff;
+        }
+
+        .contact-trigger {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: #fff;
+            border-bottom: 1px solid #fff;
+            padding-bottom: 5px;
+            font-size: 1.1rem;
+        }
+
+        /* Responsividade */
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.8rem; }
+            .gallery-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Felipe Nogueira</h1>
+        <p>Fotografia & Olhar Autoral</p>
+    </header>
+
+    <div class="filters">
+        <button class="filter-btn active" onclick="filterGallery('todos')">Todos</button>
+        <button class="filter-btn" onclick="filterGallery('retratos')">Retratos</button>
+        <button class="filter-btn" onclick="filterGallery('eventos')">Eventos</button>
+        <button class="filter-btn" onclick="filterGallery('natureza')">Natureza</button>
+    </div>
+
+    <main class="gallery-container">
+        <div class="gallery-grid" id="gallery">
+            
+            <!-- Item Retratos -->
+            <div class="gallery-item" data-category="retratos">
+                <img src="https://unsplash.com" alt="Retrato">
+                <div class="overlay">
+                    <h3>Ensaios & Retratos</h3>
+                </div>
+            </div>
+
+            <!-- Item Eventos -->
+            <div class="gallery-item" data-category="eventos">
+                <img src="https://unsplash.com" alt="Eventos">
+                <div class="overlay">
+                    <h3>Celebrações e Cerimônias</h3>
+                </div>
+            </div>
+
+            <!-- Item Natureza -->
+            <div class="gallery-item" data-category="natureza">
+                <img src="https://unsplash.com" alt="Natureza">
+                <div class="overlay">
+                    <h3>Fauna, Flora & Paisagens</h3>
+                </div>
+            </div>
+
+            <!-- Adicione mais blocos de fotos abaixo substituindo os links no 'src' -->
+
+        </div>
+    </main>
+
+    <footer>
+        <a href="https://instagram.com/felipenogphoto" target="_blank" class="contact-trigger">Vamos conversar? Entre em contato no Instagram</a>
+        <p>&copy; 2026 Felipe Nogueira. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        function filterGallery(category) {
+            // Atualiza botões ativos
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Filtra os itens da galeria
+            const items = document.querySelectorAll('.gallery-item');
+            items.forEach(item => {
+                if (category === 'todos' || item.getAttribute('data-category') === category) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
