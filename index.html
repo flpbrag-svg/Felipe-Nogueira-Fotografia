@@ -3,214 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Felipe Nogueira | Portfólio de Fotografia</title>
+    <title>Felipe Nogueira | Fotografia</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: #0b0b0b; color: #ffffff; }
+        
+        /* Menu de Navegação */
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 2rem 4rem; background-color: #050505; border-bottom: 1px solid #1a1a1a; }
+        nav .logo { font-size: 1.5rem; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; }
+        nav ul { display: flex; list-style: none; gap: 2rem; }
+        nav ul a { color: #aaa; text-decoration: none; transition: color 0.3s; font-size: 1rem; }
+        nav ul a:hover, nav ul a.active { color: #fff; border-bottom: 2px solid #fff; padding-bottom: 4px; }
 
-        body {
-            background-color: #0b0b0b;
-            color: #ffffff;
-            line-height: 1.6;
-        }
+        /* Cabeçalho */
+        header { text-align: center; padding: 5rem 2rem 3rem; }
+        header h1 { font-size: 2.8rem; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 0.5rem; }
+        header p { color: #666; font-size: 1.1rem; }
 
-        header {
-            text-align: center;
-            padding: 4rem 2rem 2rem;
-        }
+        /* Filtros da Galeria */
+        .filters { display: flex; justify-content: center; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap; }
+        .filter-btn { background: transparent; border: 1px solid #222; color: #888; padding: 0.6rem 1.8rem; cursor: pointer; border-radius: 25px; transition: all 0.3s; }
+        .filter-btn:hover, .filter-btn.active { background-color: #fff; color: #0b0b0b; border-color: #fff; }
 
-        header h1 {
-            font-size: 2.5rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 0.5rem;
-            color: #f1f1f1;
-        }
+        /* Grid de Fotos */
+        .gallery-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 2rem; }
+        .gallery-item { position: relative; overflow: hidden; border-radius: 6px; aspect-ratio: 3 / 2; background-color: #111; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+        .gallery-item:hover img { transform: scale(1.04); }
+        .gallery-item .overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.85)); padding: 1.5rem; opacity: 0; transition: opacity 0.3s; }
+        .gallery-item:hover .overlay { opacity: 1; }
 
-        header p {
-            color: #888;
-            font-size: 1rem;
-            letter-spacing: 1px;
-        }
-
-        /* Categorias/Filtros */
-        .filters {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
-            padding: 0 1rem;
-        }
-
-        .filter-btn {
-            background: transparent;
-            border: 1px solid #333;
-            color: #aaa;
-            padding: 0.5rem 1.5rem;
-            cursor: pointer;
-            border-radius: 20px;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-        }
-
-        .filter-btn:hover, .filter-btn.active {
-            background-color: #ffffff;
-            color: #0b0b0b;
-            border-color: #ffffff;
-        }
-
-        /* Galeria */
-        .gallery-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 8px;
-            background-color: #1a1a1a;
-            aspect-ratio: 3 / 2;
-            cursor: pointer;
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.05);
-        }
-
-        .gallery-item .overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.8));
-            padding: 1.5rem;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .gallery-item:hover .overlay {
-            opacity: 1;
-        }
-
-        .gallery-item .overlay h3 {
-            font-size: 1.1rem;
-            font-weight: 500;
-        }
-
-        /* Rodapé / Contato */
-        footer {
-            text-align: center;
-            padding: 5rem 2rem 3rem;
-            color: #555;
-            font-size: 0.9rem;
-        }
-
-        footer a {
-            color: #aaa;
-            text-decoration: none;
-            margin: 0 0.5rem;
-            transition: color 0.3s;
-        }
-
-        footer a:hover {
-            color: #fff;
-        }
-
-        .contact-trigger {
-            display: inline-block;
-            margin-bottom: 2rem;
-            color: #fff;
-            border-bottom: 1px solid #fff;
-            padding-bottom: 5px;
-            font-size: 1.1rem;
-        }
-
-        /* Responsividade */
-        @media (max-width: 600px) {
-            header h1 { font-size: 1.8rem; }
-            .gallery-grid { grid-template-columns: 1fr; }
-        }
+        footer { text-align: center; padding: 6rem 2rem 3rem; color: #444; font-size: 0.9rem; border-top: 1px solid #1a1a1a; margin-top: 5rem; }
+        @media (max-width: 768px) { nav { flex-direction: column; gap: 1.5rem; padding: 2rem; } .gallery-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
+    <nav>
+        <div class="logo">Felipe Nogueira</div>
+        <ul>
+            <li><a href="index.html" class="active">Portfólio</a></li>
+            <li><a href="sobre.html">Sobre Mim</a></li>
+            <li><a href="contato.html">Contato</a></li>
+        </ul>
+    </nav>
+
     <header>
-        <h1>Felipe Nogueira</h1>
-        <p>Fotografia & Olhar Autoral</p>
+        <h1>Portfólio</h1>
+        <p>Histórias contadas através da luz e do olhar</p>
     </header>
 
     <div class="filters">
-        <button class="filter-btn active" onclick="filterGallery('todos')">Todos</button>
-        <button class="filter-btn" onclick="filterGallery('retratos')">Retratos</button>
-        <button class="filter-btn" onclick="filterGallery('eventos')">Eventos</button>
-        <button class="filter-btn" onclick="filterGallery('natureza')">Natureza</button>
+        <button class="filter-btn active" onclick="filterGallery('todos')">Todos os Trabalhos</button>
+        <button class="filter-btn" onclick="filterGallery('retratos')">Ensaios & Retratos</button>
+        <button class="filter-btn" onclick="filterGallery('eventos')">Eventos Sociais</button>
+        <button class="filter-btn" onclick="filterGallery('religiosos')">Eventos Religiosos</button>
     </div>
 
     <main class="gallery-container">
-        <div class="gallery-grid" id="gallery">
+        <div class="gallery-grid">
             
-            <!-- Item Retratos -->
+            <!-- Foto de Retrato (Exemplo) -->
             <div class="gallery-item" data-category="retratos">
-                <img src="https://unsplash.com" alt="Retrato">
-                <div class="overlay">
-                    <h3>Ensaios & Retratos</h3>
-                </div>
+                <img src="imagens/retrato1.jpg" alt="Ensaio Fotográfico">
+                <div class="overlay"><h3>Ensaios Externos & Retratos</h3></div>
             </div>
 
-            <!-- Item Eventos -->
+            <!-- Foto de Evento Social (Exemplo) -->
             <div class="gallery-item" data-category="eventos">
-                <img src="https://unsplash.com" alt="Eventos">
-                <div class="overlay">
-                    <h3>Celebrações e Cerimônias</h3>
-                </div>
+                <img src="imagens/evento1.jpg" alt="Casamentos e Aniversários">
+                <div class="overlay"><h3>Casamentos & Festas Sociais</h3></div>
             </div>
 
-            <!-- Item Natureza -->
-            <div class="gallery-item" data-category="natureza">
-                <img src="https://unsplash.com" alt="Natureza">
-                <div class="overlay">
-                    <h3>Fauna, Flora & Paisagens</h3>
-                </div>
+            <!-- Foto de Evento Religioso (Exemplo) -->
+            <div class="gallery-item" data-category="religiosos">
+                <img src="imagens/religioso1.jpg" alt="Batizados e Celebrações">
+                <div class="overlay"><h3>Batizados, Missas e Celebrações</h3></div>
             </div>
-
-            <!-- Adicione mais blocos de fotos abaixo substituindo os links no 'src' -->
 
         </div>
     </main>
 
     <footer>
-        <a href="https://instagram.com/felipenogphoto" target="_blank" class="contact-trigger">Vamos conversar? Entre em contato no Instagram</a>
-        <p>&copy; 2026 Felipe Nogueira. Todos os direitos reservados.</p>
+        <p>&copy; 2026 Felipe Nogueira Fotografia. Todos os direitos reservados.</p>
     </footer>
 
     <script>
         function filterGallery(category) {
-            // Atualiza botões ativos
             const buttons = document.querySelectorAll('.filter-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
 
-            // Filtra os itens da galeria
             const items = document.querySelectorAll('.gallery-item');
             items.forEach(item => {
                 if (category === 'todos' || item.getAttribute('data-category') === category) {

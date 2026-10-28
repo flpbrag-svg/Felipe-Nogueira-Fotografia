@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato | Felipe Nogueira</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: #0b0b0b; color: #ffffff; }
+        
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 2rem 4rem; background-color: #050505; border-bottom: 1px solid #1a1a1a; }
+        nav .logo { font-size: 1.5rem; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; }
+        nav ul { display: flex; list-style: none; gap: 2rem; }
+        nav ul a { color: #aaa; text-decoration: none; font-size: 1rem; }
+        nav ul a:hover, nav ul a.active { color: #fff; border-bottom: 2px solid #fff; padding-bottom: 4px; }
+
+        .contact-container { max-width: 600px; margin: 4rem auto; padding: 0 2rem; }
+        .contact-container h1 { font-size: 2.5rem; text-transform: uppercase; text-align: center; letter-spacing: 2px; margin-bottom: 1rem; }
+        .contact-container p { text-align: center; color: #888; margin-bottom: 3rem; }
+
+        form { display: flex; flex-direction: column; gap: 1.5rem; }
+        .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+        .form-group label { color: #aaa; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+        .form-group input, .form-group textarea { background-color: #111; border: 1px solid #222; color: #fff; padding: 1rem; border-radius: 4px; font-size: 1rem; outline: none; transition: border-color 0.3s; }
+        .form-group input:focus, .form-group textarea:focus { border-color: #fff; }
+        
+        button[type="submit"] { background-color: #fff; color: #0b0b0b; border: none; padding: 1rem; font-size: 1rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; border-radius: 4px; margin-top: 1rem; transition: background-color 0.3s; }
+        button[type="submit"]:hover { background-color: #ccc; }
+
+        footer { text-align: center; padding: 4rem 2rem 3rem; color: #444; font-size: 0.9rem; border-top: 1px solid #1a1a1a; margin-top: 5rem; }
+        @media (max-width: 768px) { nav { flex-direction: column; gap: 1.5rem; padding: 2rem; } }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Felipe Nogueira</div>
+        <ul>
+            <li><a href="index.html">Portfólio</a></li>
+            <li><a href="sobre.html">Sobre Mim</a></li>
+            <li><a href="contato.html" class="active">Contato</a></li>
+        </ul>
+    </nav>
+
+    <main class="contact-container">
+        <h1>Vamos conversar?</h1>
+        <p>Preencha os campos abaixo para solicitar um orçamento ou tirar dúvidas sobre coberturas e ensaios.</p>
+        
+        <!-- IMPORTANTE: Substitua 'seu-email@gmail.com' pelo seu e-mail real para receber as mensagens -->
+        <form action="https://formsubmit.co" method="POST">
+            <!-- Configurações adicionais do formulário -->
+            <input type="hidden" name="_next" value="https://github.io">
+            <input type="hidden" name="_captcha" value="false">
+
+            <div class="form-group">
+                <label for="name">Nome Completo</label>
+                <input type="text" name="name" id="name" required placeholder="Ex: Maria Silva">
+            </div>
+
+            <div class="form-group">
+                <label for="email">E-mail de Contato</label>
+                <input type="email" name="email" id="email" required placeholder="Ex: maria@email.com">
+            </div>
+
+            <div class="form-group">
+                <label for="message">Sua Mensagem / Detalhes do Evento</label>
+                <textarea name="message" id="message" rows="6" required placeholder="Conte-me um pouco sobre o que você deseja registrar..."></textarea>
+            </div>
+
+            <button type="submit">Enviar Mensagem</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Felipe Nogueira Fotografia. Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+</html>
